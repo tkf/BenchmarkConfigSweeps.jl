@@ -49,7 +49,7 @@ using DataFrames
 df = DataFrame(sweepresult)
 ```
 
-Note that the default table conversion is rather to DWIM-y in that it tries to
+Note that the default table conversion is rather too DWIM-y in that it tries to
 guess the meaning of `BenchmarkGroup` keys.  For more information, see
 `BenchmarkConfigSweeps.flattable` for how it works.  Use
 `BenchmarkConfigSweeps.simpletable` for programmatic processing.
