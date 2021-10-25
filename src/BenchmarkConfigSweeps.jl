@@ -28,6 +28,7 @@ using BenchmarkTools: BenchmarkTools, BenchmarkGroup
 include("utils.jl")
 include("configurations.jl")
 include("run.jl")
+include("info.jl")
 include("data.jl")
 
 end  # module Internal

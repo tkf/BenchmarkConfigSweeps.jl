@@ -1,22 +1,3 @@
-function asinfo(configs::Vector{Config})
-    return (
-        BenchmarkConfigSweeps = (
-            version = "0.1.0",  # TODO: load it from Project.toml
-        ),
-        configs = configs,
-        # TODO: add more metadata? begin/end time?
-    )
-end
-
-const Info = typeof(asinfo(Config[]))
-
-function dumpinfo(path, configs::Vector{Config})
-    info = asinfo(configs)
-    JSON3.write(path, info)
-end
-
-loadinfo(path) = JSON3.read(read(path, String), Info)
-
 infopath(resultdir) = joinpath(resultdir, "info.json")
 resultpath(resultdir, i::Integer) = joinpath(resultdir, "result-$i.json")
 
