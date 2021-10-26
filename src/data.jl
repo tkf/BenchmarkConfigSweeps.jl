@@ -6,6 +6,7 @@ function loadresults(resultdir, n::Integer)
     fill!(results, nothing)
     for i in 1:n
         path = resultpath(resultdir, i)
+        isfile(path) || continue
         data = BenchmarkTools.load(path)
         @assert length(data) == 1
         results[i], = data
@@ -140,6 +141,7 @@ function BenchmarkConfigSweeps.flattable(result::SweepResult; parsekeys = dwim_p
 
     rows = let parsekeys = parsekeys
         Iterators.map(zip(simple.result, configrows)) do (result, config)
+            result === missing && return ()
             Iterators.map(BenchmarkTools.leaves(result)) do (ks, trial)
                 (; NamedTuple(config)..., parsekeys(ks)..., trial = trial)
             end
