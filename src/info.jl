@@ -6,7 +6,7 @@ function julia_info()
             branch = Base.GIT_VERSION_INFO.branch,
         ),
         is_debugbuild = ccall(:jl_is_debugbuild, Cint, ()) != 0,
-        libllvm_version = Base.libllvm_version,
+        libllvm_version = string(Base.libllvm_version),
         Sys = (
             WORD_SIZE = Sys.WORD_SIZE,
             JIT = Sys.JIT,
