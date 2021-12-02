@@ -110,6 +110,19 @@ function dwim_parsekeys(strings)
     return vals
 end
 
+"""
+    BenchmarkConfigSweeps.flattable(sweepresult) -> table
+    BenchmarkConfigSweeps.flattable(group::BenchmarkGroup) -> table
+
+Convert a `sweepresult` returned from `BenchmarkConfigSweeps.load(resultdir)` as
+a flat table where the benchmark parameters are splatted into a flat row.
+Benchmark labels are expected to be the form `"key=value"`.
+
+As a utility, a single `group::BenchmarkGroup` (which may not be obtained
+through BenchmarkConfigSweeps) can also be passed to this function.
+"""
+BenchmarkConfigSweeps.flattable
+
 # TODO: type-stabilize by using "concrete" dynamic dispatch
 function BenchmarkConfigSweeps.flattable(result::SweepResult; parsekeys = dwim_parsekeys)
     parsekeys = something(parsekeys, dont_parsekeys)
@@ -148,6 +161,18 @@ function BenchmarkConfigSweeps.flattable(result::SweepResult; parsekeys = dwim_p
         end |>
         Iterators.flatten |>
         collect
+    end
+
+    return rows
+end
+
+function BenchmarkConfigSweeps.flattable(result::BenchmarkGroup; parsekeys = dwim_parsekeys)
+    parsekeys = something(parsekeys, dont_parsekeys)
+
+    rows = let parsekeys = parsekeys
+        map(BenchmarkTools.leaves(result)) do (ks, trial)
+            (; parsekeys(ks)..., trial = trial)
+        end
     end
 
     return rows
