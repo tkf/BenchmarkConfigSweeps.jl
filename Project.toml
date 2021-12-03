@@ -1,7 +1,7 @@
 name = "BenchmarkConfigSweeps"
 uuid = "5dead3b6-c9e4-435a-a292-80e2716ed6d9"
 authors = ["Takafumi Arakaki <aka.tkf@gmail.com> and contributors"]
-version = "0.1.0-DEV"
+version = "0.1.0"
 
 [deps]
 Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
