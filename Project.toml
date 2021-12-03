@@ -13,11 +13,19 @@ StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 Tables = "bd369af6-aec1-5ad0-b16a-f7cc5008161c"
 
 [compat]
+Accessors = "0.1"
+ArgCheck = "2"
+AutoHashEquals = "0.2"
+BenchmarkTools = "1"
+JSON3 = "1"
+StructTypes = "1"
+Tables = "1"
 julia = "1"
 
 [extras]
+Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 TestFunctionRunner = "792026f5-ac9a-4a19-adcb-47b0ce2deb5d"
 
 [targets]
-test = ["Test", "TestFunctionRunner"]
+test = ["Aqua", "Test", "TestFunctionRunner"]
